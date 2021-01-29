@@ -1,0 +1,13 @@
+
+kratslov.sqlite
+data: CREATE TABLE "data" ("col_1" ,"col_2" ,"col_3" ,"col_4" ,"col_5" ,"col_6" ,"col_7" )
+fdata: CREATE TABLE "fdata" ("col_1" , "col_2" , "col_3" , "col_4" , "col_5" , "col_6" , "col_7", "col_8", "col_9", "col_10" , "col_11", "col_12")
+
+
+ks_sugg.sqlite
+CREATE TABLE "sugg" (
+	"col_1" TEXT NULL DEFAULT NULL,
+	"col_2" TEXT NULL DEFAULT NULL,
+	"col_3" TEXT NULL DEFAULT NULL
+)
+CREATE INDEX idx1 ON sugg (col_1 ASC, col_2 ASC, col_3 ASC)
