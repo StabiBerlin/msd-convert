@@ -125,7 +125,7 @@
 		$text .= '</add>' . PHP_EOL;
 
 		text2file($text,$qname);
-		file_put_contents('sug.txt',$sugtext);
+		file_put_contents('txt/sug.txt',$sugtext);
 
 		
 		function text2file($text,$qname)
