@@ -100,6 +100,6 @@
 			$_kslwl = array_unique($_kslwl);
 			$_kslwl = array_count_values($_kslwl);
 			#arsort($_wlist);
-			file_put_contents('ksl_wl.txt',var_export($_kslwl, true));	  
+			file_put_contents('txt/ksl_wl.txt',var_export($_kslwl, true));	  
 	  
 ?>

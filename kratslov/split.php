@@ -189,20 +189,20 @@
 			$_wlist = array_unique($_wlist);
 			$_wlist = array_count_values($_wlist);
 			#arsort($_wlist);
-			file_put_contents('wlist.txt',var_export($_wlist, true));		
+			file_put_contents('txt/wlist.txt',var_export($_wlist, true));		
 
 			$_tlist= explode("|", $tlist);
 			$_tlist = array_unique($_tlist);
 			$_tlist = array_count_values($_tlist);
 			#arsort($_tlist);
-			file_put_contents('tlist.txt',var_export($_tlist, true));	
+			file_put_contents('txt/tlist.txt',var_export($_tlist, true));	
 			print $c . PHP_EOL;
 
 			$_serb= explode("|", $serb);
 			$_serb = array_unique($_serb);
 			$_serb = array_count_values($_serb);
 			#arsort($_wlist);
-			file_put_contents('serb_c-d.txt',var_export($_serb, true));
+			file_put_contents('txt/serb_c-d.txt',var_export($_serb, true));
 			
 	}
 	
@@ -217,7 +217,7 @@
 			#$_char = array_count_values($_char);
 			$_char = array_unique($_char);
 			asort($_char);
-			file_put_contents('charlist.txt',var_export($_char, true));
+			file_put_contents('txt/charlist.txt',var_export($_char, true));
 	}
 	
 	function text2file($text, $filename)
@@ -259,19 +259,19 @@
 	  }
 	  
 		function clwords($value) {
-			include 'charkorr.php';
+			include 'inc/charkorr.php';
 			$value = strtr($value, $table);			
 		return($value);		
 		}	
 
 		function clhypens($value) {
-			include 'hypenkorr.php';
+			include 'inc/hypenkorr.php';
 			$value = strtr($value, $table);			
 		return($value);		
 		}	
 
 		function corrwords($value) {
-			include 'corrwords.php';
+			include 'inc/corrwords.php';
 			$value = strtr($value, $table);			
 		return($value);		
 		}		
