@@ -9,6 +9,7 @@
 		fputs($q, $text);
 		fclose($q);
 		$text ='';
+		$cdate = date ("Y-m-d");
 
 		$text = '<?xml version="1.0" encoding="UTF-8"?>' . PHP_EOL;
 		$text .= '<add>' . PHP_EOL;
@@ -107,7 +108,7 @@
 			}
 			
 			$text .= '<field name="stitle">KratkijSlovar</field>' . PHP_EOL;
-			
+			$text .= '<field name="cdate">'.$cdate.'</field>' . PHP_EOL;
 			
 			// end-doc
 			if ($row[rowid] !='') {$text .= '</doc>'. PHP_EOL; /* echo $c . $row[rowid] . PHP_EOL; */ $c++; $c2++;}
