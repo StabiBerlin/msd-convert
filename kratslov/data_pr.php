@@ -48,10 +48,25 @@
 					$_ksl = trim($_ksl);
 					$row[col_1] = preg_replace("@\[ksl=(.*?)\]@m",'',$row[col_1]);
 					
+					$kslwl .= $_ksl .'|';
+					
 					// Kirchenslawische korrekturen
 					$_ksl = preg_replace("@оу@mu",'ѹ',$_ksl);
-					$kslwl .= $_ksl .'|';
+					$_ksl = preg_replace("@є@mu",'е',$_ksl);
+					
 				}
+				
+				// Verkürzte Wörter rausfiltern und austauschen
+				preg_match_all("@^(.*?\s-.*?)\s|—@mu",$row[col_1], $enlw);
+				
+				if ($enlw[0][0] !='') {
+					for ($i = 0; $i < count($enlw[0]); $i++) {
+							$elist .= $enlw[0][$i] . '|';
+					}
+					
+								
+				}
+				$row[col_1] = enlarge_words($row[col_1]);
 				
 				
 				
@@ -96,10 +111,22 @@
 	  unset($pdo);			
 	  
 			$kslwl = preg_replace("@[\(\)]@m",'',$kslwl);
-			$_kslwl= explode("|", $kslwl);
+			$_kslwl = explode("|", $kslwl);
 			$_kslwl = array_unique($_kslwl);
 			$_kslwl = array_count_values($_kslwl);
 			#arsort($_wlist);
-			file_put_contents('txt/ksl_wl.txt',var_export($_kslwl, true));	  
-	  
+			file_put_contents('ksl_wl.txt',var_export($_kslwl, true));	  
+			
+			$_elist = explode("|", $elist);
+			$_elist = array_unique($_elist);
+			$_elist = array_count_values($_elist);
+			#arsort($_elist);
+			file_put_contents('elist.txt',var_export($_elist, true));			
+	
+		function enlarge_words($value) {
+			include 'inc/enlarge_words.php';
+			$value = strtr($value, $table);			
+		return($value);		
+		}
+	
 ?>

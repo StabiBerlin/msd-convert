@@ -9,6 +9,14 @@
 	//echo $abs_pfad;
 
 	#$directory = new RecursiveDirectoryIterator('./test');
+	
+	/* Get the raw file
+	$raw = file_get_contents('https://slavistik-portal.de/msd/raw/orig_MiklKrat_1000749290_spalten_zusammen.htm');
+	if (!file_exists("./htm/orig_MiklKrat_1000749290_spalten_zusammen.htm")) {
+		text2file($raw,"./htm/orig_MiklKrat_1000749290_spalten_zusammen.htm");
+	}
+	*/
+	
 	$directory = new RecursiveDirectoryIterator('./htm');
 	
 	$flattened = new RecursiveIteratorIterator($directory);
@@ -106,13 +114,15 @@
 		$pages[0][$i] = preg_replace('/\{\s/m'," {",$pages[0][$i]); // leerstelle + Klammer
 		$pages[0][$i] = preg_replace('/\{\.\}/m',"",$pages[0][$i]); // Klammer plus punkt
 		$pages[0][$i] = preg_replace('/\.\;\}/m',".}; ",$pages[0][$i]); // kleine korr
+		$pages[0][$i] = preg_replace('/\} \{\.\}/m',".}",$pages[0][$i]); //теплить, за- {v} {.} // nochmal
 		$pages[0][$i] = preg_replace('/\.\: —\}/m',".}: —",$pages[0][$i]); // kleine korr
 		$pages[0][$i] = preg_replace('/\{a\} \{dј\.\}/m',"{adj.}",$pages[0][$i]); // kleine korr
 		$pages[0][$i] = preg_replace('/\(n\. př,/m',"(n. př.",$pages[0][$i]); // kleine korr
 		$pages[0][$i] = preg_replace('/\]ъ/mu',"ъ]",$pages[0][$i]); // kleine korr
-		$pages[0][$i] = preg_replace('/v\. pop\.\s/m',"{v. pop.} ",$pages[0][$i]); // v. pop umklammern
+		#$pages[0][$i] = preg_replace('/v\. pop\.\s/m',"{v. pop.} ",$pages[0][$i]); // v. pop umklammern
 		$pages[0][$i] = preg_replace('/\sv\./m'," {v.}",$pages[0][$i]); // v. pop umklammern
 		$pages[0][$i] = preg_replace('/\sn\./m'," {n.}",$pages[0][$i]); // v. pop umklammern
+		$pages[0][$i] = preg_replace('/v\.\} pop\./m',"v. pop.}",$pages[0][$i]);
 		$pages[0][$i] = preg_replace('@[ ]+\s@mu',"",$pages[0][$i]); // U+0096 [control]
 		$pages[0][$i] = preg_replace('@ @mu',"",$pages[0][$i]); // U+0096 [control]
 		$pages[0][$i] = preg_replace('@ꙑ@mu',"ы",$pages[0][$i]); //  ‎A651 CYRILLIC SMALL LETTER YERU WITH BACK YER = ы
@@ -143,7 +153,7 @@
 		   #file_put_contents('./split/p-'.$pages[1][$i].'.txt',h2t($pages[0][$i]));
 		   if (mb_strlen($pages[0][$i], 'utf8') > 20) {
 				$all_pages .= $pages[0][$i];
-				#text2file($pages[0][$i], './split/p-'.$pages[1][$i].'.txt');
+				text2file($pages[0][$i], './split/p-'.$pages[1][$i].'.txt');
 		   }
 	}
 	
@@ -189,20 +199,20 @@
 			$_wlist = array_unique($_wlist);
 			$_wlist = array_count_values($_wlist);
 			#arsort($_wlist);
-			file_put_contents('txt/wlist.txt',var_export($_wlist, true));		
+			file_put_contents('wlist.txt',var_export($_wlist, true));		
 
 			$_tlist= explode("|", $tlist);
 			$_tlist = array_unique($_tlist);
 			$_tlist = array_count_values($_tlist);
 			#arsort($_tlist);
-			file_put_contents('txt/tlist.txt',var_export($_tlist, true));	
+			file_put_contents('tlist.txt',var_export($_tlist, true));	
 			print $c . PHP_EOL;
 
 			$_serb= explode("|", $serb);
 			$_serb = array_unique($_serb);
 			$_serb = array_count_values($_serb);
 			#arsort($_wlist);
-			file_put_contents('txt/serb_c-d.txt',var_export($_serb, true));
+			file_put_contents('serb_c-d.txt',var_export($_serb, true));
 			
 	}
 	
@@ -217,7 +227,7 @@
 			#$_char = array_count_values($_char);
 			$_char = array_unique($_char);
 			asort($_char);
-			file_put_contents('txt/charlist.txt',var_export($_char, true));
+			file_put_contents('charlist.txt',var_export($_char, true));
 	}
 	
 	function text2file($text, $filename)

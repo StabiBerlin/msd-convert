@@ -10,7 +10,7 @@
 		fclose($q);
 		$text ='';
 		$cdate = date ("Y-m-d");
-
+		
 		$text = '<?xml version="1.0" encoding="UTF-8"?>' . PHP_EOL;
 		$text .= '<add>' . PHP_EOL;
 	
@@ -36,56 +36,48 @@
 			
 			// https://de.wikipedia.org/wiki/Liste_der_ISO-639-1-Codes
 			if ($row[col_1] !='') {
-				$page = $row[col_11];
-			$text .= '<field name="rus">'.FormatXML($row[col_1]).'</field>' . PHP_EOL;
+			$text .= '<field name="rus" boost="2.0">'.FormatXML($row[col_1]).'</field>' . PHP_EOL;
 			#$text .= s2s($row[col_1],'rus');
 			s2sg($row[col_1],'rus');
 			}
 			
 			if ($row[col_2] !='') {
-				$page = $row[col_11];
 			$text .= '<field name="chu">'.FormatXML($row[col_2]).'</field>' . PHP_EOL;
 			#$text .= s2s($row[col_2],'chu');
 			s2sg($row[col_2],'chu');
 			}
 			
 			if ($row[col_3] !='') {
-				$page = $row[col_11];
 			$text .= '<field name="bul">'.FormatXML($row[col_3]).'</field>' . PHP_EOL;
 			#$text .= s2s($row[col_3],'bul');
 			s2sg($row[col_3],'bul');
 			}			
 			
 			if ($row[col_4] !='') {
-				$page = $row[col_11];
 			$text .= '<field name="srp">'.FormatXML($row[col_4]).'</field>' . PHP_EOL;
 			#$text .= s2s($row[col_4],'srp');
 			s2sg($row[col_4],'srp');
 			}
 			
 			if ($row[col_5] !='') {
-				$page = $row[col_11];
 			$text .= '<field name="cze">'.FormatXML($row[col_5]).'</field>' . PHP_EOL;
 			#$text .= s2s($row[col_5],'cze');
 			s2sg($row[col_5],'cze');
 			}			
 
 			if ($row[col_6] !='') {
-				$page = $row[col_11] - 1;
 			$text .= '<field name="pol">'.FormatXML($row[col_6]).'</field>' . PHP_EOL;
 			#$text .= s2s($row[col_6],'pol');
 			s2sg($row[col_6],'pol');
 			}
 			
 			if ($row[col_7] !='') {
-				$page = $row[col_11] - 1;
 			$text .= '<field name="fre">'.FormatXML($row[col_7]).'</field>' . PHP_EOL;
 			#$text .= s2s($row[col_7],'fre');
 			s2sg($row[col_7],'fre');
 			}			
 			
 			if ($row[col_8] !='') {
-				$page = $row[col_11] - 1;
 			$text .= '<field name="ger">'.FormatXML($row[col_8]).'</field>' . PHP_EOL;
 			#$text .= s2s($row[col_8],'ger');
 			s2sg($row[col_8],'ger');
@@ -100,7 +92,7 @@
 			}
 
 			if ($row[col_11] !='') {
-			$text .= '<field name="page">'.FormatXML($page).'</field>' . PHP_EOL;
+			$text .= '<field name="page">'.FormatXML($row[col_11]).'</field>' . PHP_EOL;
 			}
 
 			if ($row[col_12] !='') {
@@ -109,6 +101,7 @@
 			
 			$text .= '<field name="stitle">KratkijSlovar</field>' . PHP_EOL;
 			$text .= '<field name="cdate">'.$cdate.'</field>' . PHP_EOL;
+			
 			
 			// end-doc
 			if ($row[rowid] !='') {$text .= '</doc>'. PHP_EOL; /* echo $c . $row[rowid] . PHP_EOL; */ $c++; $c2++;}
@@ -126,7 +119,7 @@
 		$text .= '</add>' . PHP_EOL;
 
 		text2file($text,$qname);
-		file_put_contents('txt/sug.txt',$sugtext);
+		file_put_contents('sug.txt',$sugtext);
 
 		
 		function text2file($text,$qname)
@@ -168,7 +161,7 @@
 			$ac = array_unique($ac);
 			for ($i = 0; $i < count($ac); $i++) {
 				$ac[$i] = trim($ac[$i]);
-				if ($ac[$i] !='' && mb_strlen($ac[$i], 'UTF-8')>1) {$sugtext .= $ac[$i] . '	'. transl($ac[$i]) . '	' . $spr . PHP_EOL;}
+				if ($ac[$i] !='' && mb_strlen($ac[$i], 'UTF-8')>1) {$sugtext .= $ac[$i] . '	'. transl($ac[$i]) . '	' . $spr . '	' . 'KratSlov' . PHP_EOL;}
 			}
 		
 	}	

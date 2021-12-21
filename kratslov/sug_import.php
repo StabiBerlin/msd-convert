@@ -1,11 +1,11 @@
 <?php
 
-	$pdo = new PDO('sqlite:./db/ks_sugg.sqlite');
+	$pdo = new PDO('sqlite:./db/msd_sugg.sqlite');
 	$pdo->beginTransaction();
 	
 	$pdo->exec("DELETE FROM sugg");
 	
-	$csv = file("txt/sug.txt");
+	$csv = file("sug.txt");
 	for($i=0;$i < count($csv); $i++){
 	$csv[$i] = preg_replace("/\'/","''",$csv[$i]);
 	   $row = explode("\t",$csv[$i]);
@@ -15,11 +15,13 @@
 			$sql = "INSERT INTO sugg (
 			'col_1',
 			'col_2',
-			'col_3'
+			'col_3',
+			'col_4'
 			) VALUES (
 			'{$row[0]}',
 			'{$row[1]}',
-			'{$row[2]}'
+			'{$row[2]}',
+			'{$row[3]}'
 			)";
 
 			$pdo->query($sql);
