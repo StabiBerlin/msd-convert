@@ -10,12 +10,8 @@
 
 	#$directory = new RecursiveDirectoryIterator('./test');
 	
-	/* Get the raw file
-	$raw = file_get_contents('https://slavistik-portal.de/msd/raw/orig_MiklKrat_1000749290_spalten_zusammen.htm');
-	if (!file_exists("./htm/orig_MiklKrat_1000749290_spalten_zusammen.htm")) {
-		text2file($raw,"./htm/orig_MiklKrat_1000749290_spalten_zusammen.htm");
-	}
-	*/
+	// Get the raw files here, unzip in ./htm folder
+	// $raw = file_get_contents('https://slavistik-portal.de/msd/raw/orig_MiklKrat_1000749290_spalten_zusammen.zip');
 	
 	$directory = new RecursiveDirectoryIterator('./htm');
 	

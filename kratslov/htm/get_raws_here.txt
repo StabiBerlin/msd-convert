@@ -1,0 +1,2 @@
+Get the raw files here, unzip in ./htm folder
+$raw = file_get_contents('https://slavistik-portal.de/msd/raw/orig_MiklKrat_1000749290_spalten_zusammen.zip');

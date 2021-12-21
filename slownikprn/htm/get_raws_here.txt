@@ -1,0 +1,2 @@
+Get the raw files here, unzip in ./htm folder
+$raw = file_get_contents('https://slavistik-portal.de/msd/raw/SchmSow_1689077832_Page_101-200 _Ne.zip');
