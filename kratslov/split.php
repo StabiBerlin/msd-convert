@@ -94,7 +94,7 @@
 		$pages[0][$i] = preg_replace('@,@mis', ', ', $pages[0][$i]);		
 		$pages[0][$i] = preg_replace('@;@mis', '; ', $pages[0][$i]);
 		
-		//Allerletze Bereinigungen
+		//Allerletze bereinigungen
 		$pages[0][$i] = preg_replace('/\040{1,}/m',' ',$pages[0][$i]);		
 		$pages[0][$i] = preg_replace('/^\s+/m','',$pages[0][$i]);		
 		$pages[0][$i] = preg_replace('/\s\t\s/m',"\t",$pages[0][$i]);		
@@ -106,15 +106,15 @@
 		$pages[0][$i] = preg_replace('/\} \{\.\}/m',".}",$pages[0][$i]); //теплить, за- {v} {.}
 		$pages[0][$i] = preg_replace('/\.: \}/m',".}: ",$pages[0][$i]); //говорной {adj.: }-ная
 		$pages[0][$i] = preg_replace('/\{\s\}/m',"",$pages[0][$i]); // leere Klammern
-		$pages[0][$i] = preg_replace('/\s\}/m',"} ",$pages[0][$i]); // leerstelle + Klammer
-		$pages[0][$i] = preg_replace('/\{\s/m'," {",$pages[0][$i]); // leerstelle + Klammer
-		$pages[0][$i] = preg_replace('/\{\.\}/m',"",$pages[0][$i]); // Klammer plus punkt
-		$pages[0][$i] = preg_replace('/\.\;\}/m',".}; ",$pages[0][$i]); // kleine korr
+		$pages[0][$i] = preg_replace('/\s\}/m',"} ",$pages[0][$i]); // Leerstelle + Klammer
+		$pages[0][$i] = preg_replace('/\{\s/m'," {",$pages[0][$i]); // Leerstelle + Klammer
+		$pages[0][$i] = preg_replace('/\{\.\}/m',"",$pages[0][$i]); // Klammer plus Punkt
+		$pages[0][$i] = preg_replace('/\.\;\}/m',".}; ",$pages[0][$i]); // kleine Korr
 		$pages[0][$i] = preg_replace('/\} \{\.\}/m',".}",$pages[0][$i]); //теплить, за- {v} {.} // nochmal
-		$pages[0][$i] = preg_replace('/\.\: —\}/m',".}: —",$pages[0][$i]); // kleine korr
-		$pages[0][$i] = preg_replace('/\{a\} \{dј\.\}/m',"{adj.}",$pages[0][$i]); // kleine korr
-		$pages[0][$i] = preg_replace('/\(n\. př,/m',"(n. př.",$pages[0][$i]); // kleine korr
-		$pages[0][$i] = preg_replace('/\]ъ/mu',"ъ]",$pages[0][$i]); // kleine korr
+		$pages[0][$i] = preg_replace('/\.\: —\}/m',".}: —",$pages[0][$i]); // kleine Korr
+		$pages[0][$i] = preg_replace('/\{a\} \{dј\.\}/m',"{adj.}",$pages[0][$i]); // kleine Korr
+		$pages[0][$i] = preg_replace('/\(n\. př,/m',"(n. př.",$pages[0][$i]); // kleine Korr
+		$pages[0][$i] = preg_replace('/\]ъ/mu',"ъ]",$pages[0][$i]); // kleine Korr
 		#$pages[0][$i] = preg_replace('/v\. pop\.\s/m',"{v. pop.} ",$pages[0][$i]); // v. pop umklammern
 		$pages[0][$i] = preg_replace('/\sv\./m'," {v.}",$pages[0][$i]); // v. pop umklammern
 		$pages[0][$i] = preg_replace('/\sn\./m'," {n.}",$pages[0][$i]); // v. pop umklammern
@@ -131,13 +131,13 @@
 		$pages[0][$i] = preg_replace('@ƭ@mu',"ť",$pages[0][$i]); //  ‎01AD LATIN SMALL LETTER T WITH HOOK durch cze t'
 		$pages[0][$i] = preg_replace('@ƒ@mu',"f",$pages[0][$i]); //  0192 LATIN SMALL LETTER F WITH HOOK durch norm f
 		$pages[0][$i] = preg_replace('@ĕ@mu',"ě",$pages[0][$i]); //  ‎0115 LATIN SMALL LETTER E WITH BREVE durch czech ě
-		$pages[0][$i] = preg_replace('@ľ @mu',"ľ",$pages[0][$i]); //  französsisches l apostrof leerraum rausnehmen
+		$pages[0][$i] = preg_replace('@ľ @mu',"ľ",$pages[0][$i]); //  französisches l Apostrof Leerraum rausnehmen
 		
 		$pages[0][$i] = preg_replace('/\040{1,}/m',' ',$pages[0][$i]);	
 		
 		$pages[0][$i] = bereinigen($pages[0][$i]);
 		
-		// Seiten korr
+		// Seiten Korr
 				$pages[0][$i] = preg_replace_callback(
 					"@\[\%p(\d+)@mis",
 					function($matches) {

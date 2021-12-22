@@ -19,7 +19,7 @@
 					// Bereinigung vom SQL-Statment
 					$row = preg_replace("/\'/","''",$row);
 			
-			// Fehlender Verweise nachtragen
+			// Fehlender Verweis nachtragen
 			$row = preg_replace("/\sv\.\s/"," {v.} ",$row);
 				
 				

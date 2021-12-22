@@ -52,7 +52,7 @@
 					
 					
 					
-					// Kirchenslawische korrekturen
+					// Kirchenslawische Korrekturen
 					#$_ksl = preg_replace("@оу@mu",'ѹ',$_ksl);
 					#$_ksl = preg_replace("@є@mu",'е',$_ksl);
 					
